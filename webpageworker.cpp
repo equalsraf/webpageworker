@@ -112,7 +112,9 @@ int main(int argc, char *argv[])
 	} else {
 		// Read javascript from file
 		f.setFileName(scriptPath);
-		f.open(QIODevice::ReadOnly | QIODevice::Text);
+		if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			exit_error("Unable to read script file: " + f.errorString());
+		}
 	}
 	QString script = QString::fromUtf8(f.readAll());
 	w->setHandlerScript(script);
