@@ -40,7 +40,6 @@ public slots:
 	QString absUrl(const QString&);
 	bool failed();
 	void load(const QString& url);
-	void finishProcessing(const QVariant&, int error=0);
 	void done(int error=0);
 	void setLatestException(const QString&);
 

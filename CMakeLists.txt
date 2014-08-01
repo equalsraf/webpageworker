@@ -13,7 +13,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5WebKitWidgets REQUIRED)
 
-set(webpageworker_SOURCES webpageworker.cpp webpage.cpp networkaccessmanager.cpp)
+set(webpageworker_SOURCES webpageworker.cpp webpage.cpp networkaccessmanager.cpp
+	cookiejar.cpp)
 qt5_add_resources(webpageworker_RCC javascript.qrc)
 add_executable(webpageworker ${webpageworker_SOURCES} ${webpageworker_RCC})
 qt5_use_modules(webpageworker Script WebKitWidgets)

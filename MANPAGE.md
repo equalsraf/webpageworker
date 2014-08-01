@@ -59,6 +59,11 @@ to `print()` will be stored under `print`
         ]
     }
 
+Other attributes are also reserved.
+
+**cookies**
+  Holds a list of all the cookies that were set during execution.
+
 # WRITING WORKER SCRIPTS
 
 All worker methods are available under the **WebPage** object

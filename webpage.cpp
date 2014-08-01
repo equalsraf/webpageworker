@@ -2,6 +2,8 @@
 
 #include <QWebFrame>
 #include <QWebElement>
+#include <QNetworkCookieJar>
+#include <QNetworkCookie>
 #include <QtCore>
 
 WebPage::WebPage(QObject *parent)
@@ -230,17 +232,20 @@ void WebPage::injectVideoJS(QWebFrame *frame)
 	frame->evaluateJavaScript(script);
 }
 
-void WebPage::finishProcessing(const QVariant &v, int code)
-{
-	emit handlerFinished(v, code);
-}
-
 void WebPage::done(int code)
 {
 	QVariantMap res;
 	foreach(QString key, m_result.keys()) {
 		res.insert(key, m_result.value(key));
 	}
+
+	// Cookies
+	QStringList cookies;
+	foreach(QNetworkCookie c, m_nam.cookieJar()->allCookies()) {
+		cookies << c.toRawForm();
+	}
+	res.insert("cookies", cookies);
+
 	emit handlerFinished(res, code);
 }
 

@@ -5,7 +5,13 @@
 NetworkAccessManager::NetworkAccessManager(QObject *parent)
 :QNetworkAccessManager(parent)
 {
+	m_cookiejar = new CookieJar(this);
+	setCookieJar(m_cookiejar);
+}
 
+CookieJar* NetworkAccessManager::cookieJar()
+{
+	return m_cookiejar;
 }
 
 QNetworkReply* NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest& req, QIODevice *data)
